@@ -70,11 +70,34 @@ report("#A5",answer)
     </div>
     
 <h1>Working with Objects</h1>
+ 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 <div id="A6">
 <h3>Create a function that takes a penguin object and returns an object that contains one attribute, the picture of that penguin</h3>
 <script>
-var answer="please complete";
+
+    
+var eanswer = function(penguin)
+{
+    var peng = {};
+        peng.bg = penguin.picture;  
+    
+     return peng
+}
+var answer = eanswer(classroom[0]);
+ console.log(answer)    
+    
+    
 report("#A6",answer)    
 </script>
     </div>
@@ -82,8 +105,29 @@ report("#A6",answer)
 <div id="A7">
 <h3>Expand your function from the last one, so that the object it returns not only has a picture attribute, but also new attribute called quizMean, which is the mean of that penguins quiz scores</h3>
 <script>
+    
 //be sure to test your function out.
-var answer="please complete";
+    
+var getGrade = function(quiz)
+{
+    return quiz.grade;
+}
+var getmean = function(penguin)
+{
+    return d3.mean(penguin.quizes, getGrade);
+    
+}
+      
+var banswer = function(penguin)
+{
+    var peng = {};
+        peng.bg = penguin.picture;  
+        peng.quizMean = getmean(penguin);
+     return peng
+}
+var answer = banswer(classroom[0]);
+
+    
 report("#A7",answer)    
 </script>
     </div>
@@ -91,8 +135,10 @@ report("#A7",answer)
 <div id="A8">
 <h3>With one line of code, return an array of objects that contain the picture and meanQuiz grade of all penguins</h3>
 <script>
-var answer="please complete";
-report("#A8",answer)    
+    var newarry = []
+    var ranswer = classroom.forEach(function(ele){ newarry.push(banswer(ele))}); 
+    var answer =  newarry;
+    report("#A8",answer)       
 </script>
     </div>
 
@@ -106,7 +152,33 @@ report("#A8",answer)
         <li>finalGrade</li>
     </ul>
 <script>
-var answer="please complete";
+var getmeantest = function(penguin)
+{
+    return d3.mean(penguin.test, getGrade);
+    
+}
+var getmeanHW = function(penguin)
+{
+    return d3.mean(penguin.homework, getGrade);
+    
+}
+
+var oanswer = function(penguin)
+{
+    
+    penguin.picture = eanswer(penguin);
+    penguin.meanQuiz = getmean(penguin);
+    penguin.meanTests = getmeantest(penguin);
+    penguin.meanHW = getmeanHW(penguin);
+    penguin.finalGrade = penguin.final[0].grade;
+    
+    return penguin
+
+}
+    var answer = oanswer(classroom[0]);
+    
+    
+  
 report("#A9",answer)    
 </script>
     </div>
@@ -114,7 +186,11 @@ report("#A9",answer)
 <div id="A10">
 <h3>With one line of code, return an array of objects where each objects contains all of the summary info about each penguin.</h3>
 <script>
-var answer="please complete";
+   var lolarray = []
+    var danswer = classroom.forEach(function(ele){ lolarray.push(oanswer(ele))}); 
+     
+    
+var answer= lolarray;
 report("#A10",answer)    
 </script>
     </div>
@@ -133,7 +209,21 @@ report("#A10",answer)
 <h3>Write a function that takes the classroom data and returns an array of objects.  Each object will have two attributes: a picture and the total grade in the class.</h3>
     
 <script>
+var lollyarray = []
+var zanswer = function(penguin)
+{
+    
+    penguin.picture = eanswer(penguin);
+    penguin.meanQuiz = getmean(penguin)*0.2;
+    penguin.meanTests = getmeantest(penguin)*0.3;
+    penguin.meanHW = getmeanHW(penguin)*0.15;
+    penguin.finalGrade = penguin.final[0].grade*0.35;
+   total = penguin.finalGrade+ penguin.meanHW+penguin.meanQuiz+penguin.meanTests
+    return total
 
+}
+var sanswer = classroom.forEach(function(ele){ lolarray.push(zanswer(ele))});
+var answer = sanswer
     report("#B1",answer);
 </script>
     </div>
